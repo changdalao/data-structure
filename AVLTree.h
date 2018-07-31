@@ -9,7 +9,7 @@ struct AVLTreeNode
 	AVLTreeNode<K, V>* _right;
 	AVLTreeNode<K, V>* _parent;
 
-	int _bf;	// Æ½ºâÒò×Ó
+	int _bf;	// å¹³è¡¡å› å­
 
 	AVLTreeNode(const K& key, const V& value)
 		:_left(NULL)
@@ -70,9 +70,9 @@ public:
 			cur->_parent = parent;
 		}
 
-		// µ÷Æ½ºâ
+		// è°ƒå¹³è¡¡
 
-		// 1.¸üÐÂÆ½ºâÒò×Ó
+		// 1.æ›´æ–°å¹³è¡¡å› å­
 		while(parent)
 		{
 			if (cur == parent->_right)
@@ -91,7 +91,7 @@ public:
 			}
 			else // -2/2
 			{
-				// Ðý×ª
+				// æ—‹è½¬
 				if (parent->_bf == 2)
 				{
 					if (cur->_bf == 1)
@@ -122,7 +122,7 @@ public:
 		return true;
 	}
 
-	void RotateR(Node* parent)
+	void RotateR(Node* parent) //å³å•æ—‹
 	{
 		Node* subL = parent->_left;
 		Node* subLR = subL->_right;
@@ -158,7 +158,7 @@ public:
 	}
 
 
-	void RotateL(Node* parent)
+	void RotateL(Node* parent)//å·¦å•æ—‹
 	{
 		Node* subR = parent->_right;
 		Node* subRL = subR->_left;
@@ -167,7 +167,8 @@ public:
 		parent->_right = subRL;
 		if(subRL)
 			subRL->_parent = parent;
-
+		
+		//é“¾æŽ¥parentå’ŒsubR
 		subR->_left = parent;
 		parent->_parent = subR;
 		
@@ -189,11 +190,11 @@ public:
 
 			subR->_parent = ppNode;
 		}
-
+		//æ—‹è½¬åŽæ›´æ–°å¹³è¡¡å› å­
 		parent->_bf = subR->_bf = 0;
 	}
 
-	void RotateRL(Node* parent)
+	void RotateRL(Node* parent)//å³å·¦åŒæ—‹
 	{
 		Node* subR = parent->_right;
 		Node* subRL = subR->_left;
@@ -288,7 +289,7 @@ public:
 		{
 			if (rightHeight-leftHeight != root->_bf)
 			{
-				cout<<"Æ½ºâÒò×ÓÒì³£"<<root->_key<<endl;
+				cout<<"å¹³è¡¡å› å­å¼‚å¸¸"<<root->_key<<endl;
 				return false;
 			}
 
